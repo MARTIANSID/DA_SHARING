@@ -29,10 +29,14 @@ class _ProfileState extends State<Profile> {
         right: 0,
         child: Container(
           margin: EdgeInsets.all(10),
-          height: 200,
-          width: 200,
+          height: size.height * 0.2,
+          width: size.height * 0.2,
           decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.red),
-          child: Center(child: Text("Image")),
+          child: Center(
+              child: Image.asset(
+            './assets/images/flutter_01.png',
+            fit: BoxFit.cover,
+          )),
         ),
       )
     ]);
