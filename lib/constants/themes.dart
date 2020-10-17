@@ -14,13 +14,15 @@ class ThemeConstants {
 
   static const Color MENU_NOT_SELECTED = Color(0xFF555555);
 
-  static const LinearGradient PURPLE_GRADIENT = LinearGradient(
-      colors: [Color(0xFF4E57F2), Color(0xFF973FF5)],
+  static LinearGradient PURPLE_GRADIENT = LinearGradient(
+      List: [Color(0xFF4E57F2), Color(0xFF973FF5)],
       begin: Alignment.topLeft,
       end: Alignment.bottomRight);
-  static const LinearGradient WHITE_GRADIENT = LinearGradient(
-    colors: [Colors.transparent, Colors.transparent],
+
+  static LinearGradient WHITE_GRADIENT = LinearGradient(
+    List: [Colors.transparent, Colors.transparent],
   );
+
   static const Color RIGHT_CHAT_BUBBLE = Color(0xFF2233AA);
   static const Color LEFT_CHAT_BUBBLE_PRIVATE = Color(0xFF112255);
   // Color(0xFF2233AA);
