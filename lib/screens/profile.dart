@@ -47,10 +47,10 @@ class _ProfileState extends State<Profile> {
 class MeraClipper extends CustomClipper<Path> {
   @override
   getClip(Size size) {
+    Path customPath = Path()
+    ..;
     Rect design =
         Rect.fromCircle(center: Offset(size.width, size.height), radius: 40);
-
-    Path customPath = Path()..addArc(design, 0, 2 * pi);
 
     return customPath;
   }
