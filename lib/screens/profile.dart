@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../constants/themes.dart';
+import 'dart:math';
 
 class Profile extends StatefulWidget {
   @override
@@ -31,11 +32,38 @@ class _ProfileState extends State<Profile> {
           margin: EdgeInsets.all(10),
           height: 200,
           width: 200,
-          decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.red),
-          child: Center(child: Text("Image")),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: Colors.red,
+            boxShadow: [BoxShadow()],
+          ),
+          child: ClipPath(
+            //clipper: MeraClipper(),
+            clipBehavior: Clip.hardEdge,
+            child: Center(
+              child: Text("Image"),
+            ),
+          ),
         ),
       )
     ]);
+  }
+}
+
+class MeraClipper extends CustomClipper<Path> {
+  @override
+  getClip(Size size) {
+    Rect design = Rect.fromCircle(
+        center: Offset(size.width, size.height), radius: 40);
+
+    Path customPath = Path()..addArc(design, 0, 2 * pi);
+
+    return customPath;
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper oldClipper) {
+    return false;
   }
 }
 
