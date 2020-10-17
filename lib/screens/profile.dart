@@ -20,7 +20,7 @@ class _ProfileState extends State<Profile> {
           ),
         ),
         Positioned(
-          height: size.height *0.40,
+          height: size.height * 0.40,
           child: CustomPaint(
             size: size,
             painter: NiceBackground(),
@@ -41,9 +41,9 @@ class _ProfileState extends State<Profile> {
         ),
         Positioned(
           top: size.height * 0.105,
-          left: size.width * 0.12,
+          left: size.width * 0.049,
           child: Text(
-            'Profile',
+            'Omkar Kulkarni',
             style: TextStyle(
               color: Colors.white,
               fontSize: 35,
