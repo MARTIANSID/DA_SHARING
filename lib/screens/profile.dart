@@ -11,57 +11,55 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Stack(children: [
-      Container(
-        width: size.width,
-        decoration: BoxDecoration(
-          color: ThemeConstants.BGCOLOR_DARK,
+    return Stack(
+      children: [
+        Container(
+          width: size.width,
+          decoration: BoxDecoration(
+            color: ThemeConstants.BGCOLOR_DARK,
+          ),
         ),
-      ),
-      Positioned(
-        height: size.height * 0.35,
-        child: CustomPaint(
-          size: size,
-          painter: NiceBackground(),
+        Positioned(
+          height: size.height * 0.35,
+          child: CustomPaint(
+            size: size,
+            painter: NiceBackground(),
+          ),
         ),
-      ),
-      Positioned(
-        top: size.height * 0.18,
-        right: 0,
-        child: Container(
-            margin: EdgeInsets.all(10),
-            height: size.height * 0.2,
-            width: size.height * 0.2,
-            decoration:
-                BoxDecoration(shape: BoxShape.circle, color: Colors.red),
-            child: ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(50)),
-              child: Image.asset(
-                './assets/images/omkar.png',
-                fit: BoxFit.cover,
-              ),
-            )),
-      )
-    ]);
+        Positioned(
+          top: size.height * 0.18,
+          right: 50,
+          child: ClipPath(
+            clipper: MeraClipper(),
+            child: Image.asset(
+              './assets/images/omkar.png',
+              height: 100,
+              width: 100,
+              fit: BoxFit.fill,
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }
 
-// class MeraClipper extends CustomClipper<Path> {
-//   @override
-//   getClip(Size size) {
-//     Rect design =
-//         Rect.fromCircle(center: Offset(size.width, size.height), radius: 40);
+class MeraClipper extends CustomClipper<Path> {
+  @override
+  getClip(Size size) {
+    Rect design = Rect.fromCircle(center: Offset(50, 50), radius: 40);
 
-//     Path customPath = Path()..addArc(design, 0, 2 * pi);
+    Path customPath = Path()..addOval(design);
+    customPath.close();
 
-//     return customPath;
-//   }
+    return customPath;
+  }
 
-//   @override
-//   bool shouldReclip(covariant CustomClipper oldClipper) {
-//     return false;
-//   }
-// }
+  @override
+  bool shouldReclip(covariant CustomClipper oldClipper) {
+    return true;
+  }
+}
 
 class NiceBackground extends CustomPainter {
   @override
