@@ -15,12 +15,12 @@ class ThemeConstants {
   static const Color MENU_NOT_SELECTED = Color(0xFF555555);
 
   static LinearGradient PURPLE_GRADIENT = LinearGradient(
-      List: [Color(0xFF4E57F2), Color(0xFF973FF5)],
+      colors: [Color(0xFF4E57F2), Color(0xFF973FF5)],
       begin: Alignment.topLeft,
       end: Alignment.bottomRight);
 
   static LinearGradient WHITE_GRADIENT = LinearGradient(
-    List: [Colors.transparent, Colors.transparent],
+    colors: [Colors.transparent, Colors.transparent],
   );
 
   static const Color RIGHT_CHAT_BUBBLE = Color(0xFF2233AA);
