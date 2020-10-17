@@ -34,9 +34,12 @@ class _ProfileState extends State<Profile> {
             width: size.height * 0.2,
             decoration:
                 BoxDecoration(shape: BoxShape.circle, color: Colors.red),
-            child: Image.asset(
-              './assets/images/omkar.png',
-              fit: BoxFit.cover,
+            child: ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(50)),
+              child: Image.asset(
+                './assets/images/omkar.png',
+                fit: BoxFit.cover,
+              ),
             )),
       )
     ]);
