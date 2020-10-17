@@ -29,37 +29,39 @@ class _ProfileState extends State<Profile> {
         top: size.height * 0.18,
         right: 0,
         child: Container(
-          margin: EdgeInsets.all(10),
-          height: size.height * 0.2,
-          width: size.height * 0.2,
-          decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.red),
-          child: Center(
+            margin: EdgeInsets.all(10),
+            height: size.height * 0.2,
+            width: size.height * 0.2,
+            decoration:
+                BoxDecoration(shape: BoxShape.circle, color: Colors.red),
+            child: ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(50)),
               child: Image.asset(
-            './assets/images/flutter_01.png',
-            fit: BoxFit.cover,
-          )),
-        ),
+                './assets/images/omkar.png',
+                fit: BoxFit.cover,
+              ),
+            )),
       )
     ]);
   }
 }
 
-class MeraClipper extends CustomClipper<Path> {
-  @override
-  getClip(Size size) {
-    Path customPath = Path()
-    ..;
-    Rect design =
-        Rect.fromCircle(center: Offset(size.width, size.height), radius: 40);
+// class MeraClipper extends CustomClipper<Path> {
+//   @override
+//   getClip(Size size) {
+//     Rect design =
+//         Rect.fromCircle(center: Offset(size.width, size.height), radius: 40);
 
-    return customPath;
-  }
+//     Path customPath = Path()..addArc(design, 0, 2 * pi);
 
-  @override
-  bool shouldReclip(covariant CustomClipper oldClipper) {
-    return false;
-  }
-}
+//     return customPath;
+//   }
+
+//   @override
+//   bool shouldReclip(covariant CustomClipper oldClipper) {
+//     return false;
+//   }
+// }
 
 class NiceBackground extends CustomPainter {
   @override
