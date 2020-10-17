@@ -18,12 +18,23 @@ class _ProfileState extends State<Profile> {
         ),
       ),
       Positioned(
-        height: size.height*0.5,
+        height: size.height * 0.35,
         child: CustomPaint(
           size: size,
           painter: NiceBackground(),
         ),
       ),
+      Positioned(
+        top: size.height * 0.18,
+        right: 0,
+        child: Container(
+          margin: EdgeInsets.all(10),
+          height: 200,
+          width: 200,
+          decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.red),
+          child: Center(child: Text("Image")),
+        ),
+      )
     ]);
   }
 }
@@ -46,9 +57,9 @@ class NiceBackground extends CustomPainter {
     Rect rect = Rect.largest;
 
     var paintBrush = Paint()
-      ..color = Color(0xff226DC6)
       ..strokeWidth = 4
-      ..style = PaintingStyle.fill;
+      ..style = PaintingStyle.fill
+      ..color = ThemeConstants.TEXT_CHAT_ACTIVE;
 
     canvas.drawPath(myPath, paintBrush);
   }
