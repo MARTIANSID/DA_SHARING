@@ -23,9 +23,9 @@ class _HomeState extends State<Home> {
       bottomNavigationBar: Container(
         decoration: BoxDecoration(gradient: ThemeConstants.PURPLE_GRADIENT),
         child: BottomNavigationBar(
-          backgroundColor: Colors.transparent,
+          backgroundColor: ThemeConstants.LEFT_CHAT_BUBBLE_PRIVATE,
           type: BottomNavigationBarType.fixed,
-          selectedItemColor: ThemeConstants.BGCOLOR_DARK_COMP,
+          selectedItemColor: ThemeConstants.RIGHT_CHAT_BUBBLE,
           currentIndex: currentIndex,
           onTap: (index) {
             setState(() {
