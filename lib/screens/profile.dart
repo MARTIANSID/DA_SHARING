@@ -20,7 +20,7 @@ class _ProfileState extends State<Profile> {
           ),
         ),
         Positioned(
-          height: size.height * 0.35,
+          height: size.height *0.40,
           child: CustomPaint(
             size: size,
             painter: NiceBackground(),
@@ -33,9 +33,31 @@ class _ProfileState extends State<Profile> {
             clipper: MeraClipper(),
             child: Image.asset(
               './assets/images/omkar.png',
-              height: 100,
+              height: 150,
               width: 100,
-              fit: BoxFit.fill,
+              fit: BoxFit.fitWidth,
+            ),
+          ),
+        ),
+        Positioned(
+          top: size.height * 0.105,
+          left: size.width * 0.12,
+          child: Text(
+            'Profile',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 35,
+            ),
+          ),
+        ),
+        Positioned(
+          top: size.height * 0.70,
+          height: size.height * 0.35,
+          child: Transform.rotate(
+            angle: pi,
+            child: CustomPaint(
+              size: size,
+              painter: NiceBackground(),
             ),
           ),
         ),
@@ -47,7 +69,7 @@ class _ProfileState extends State<Profile> {
 class MeraClipper extends CustomClipper<Path> {
   @override
   getClip(Size size) {
-    Rect design = Rect.fromCircle(center: Offset(50, 50), radius: 40);
+    Rect design = Rect.fromCircle(center: Offset(50, 50), radius: 50);
 
     Path customPath = Path()..addOval(design);
     customPath.close();
