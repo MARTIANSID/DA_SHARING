@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "542211505049",
+    "firebase_url": "https://da-sharing-app.firebaseio.com",
+    "project_id": "da-sharing-app",
+    "storage_bucket": "da-sharing-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:542211505049:android:a920baac62d0b2c280b108",
+        "android_client_info": {
+          "package_name": "com.example.videoPlayer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "542211505049-5oicbpj3pfn24jc2ek7ls374m2p6kflf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnKZbU83a7wbdRfPCm0-pJWQ-0bQMdcaA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "542211505049-5oicbpj3pfn24jc2ek7ls374m2p6kflf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
