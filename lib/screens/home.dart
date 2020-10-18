@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:videoPlayer/screens/chatRoom.dart';
-import 'package:videoPlayer/screens/profile.dart';
+import 'package:videoPlayer/screens/profile1.dart';
 import 'package:videoPlayer/screens/upload.dart';
 import '../constants/themes.dart';
 
@@ -52,5 +52,3 @@ class _HomeState extends State<Home> {
     );
   }
 }
-
-

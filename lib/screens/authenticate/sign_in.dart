@@ -132,6 +132,7 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
                                       print(this.email + " " + this.password);
                                       if (_formkey.currentState.validate()) {
                                         _auth.toggleLoading(true);
+
                                         dynamic user = await _auth.register(
                                             email, password);
                                         if (user != null && !(user is int)) {
