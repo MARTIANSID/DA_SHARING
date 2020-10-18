@@ -158,8 +158,8 @@ class _ProfileState extends State<Profile> {
               ),
             ),
             rmContainers(
-                width: size.width * (137 / width),
-                heightt: size.height * (127 / height))
+                width: size.width * (120 / width),
+                heightt: size.height * (160 / height))
           ],
         ),
       ),
