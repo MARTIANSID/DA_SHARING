@@ -25,6 +25,7 @@ class UserManage with ChangeNotifier {
         name: google ? user.displayName : username,
         image: google ? user.photoUrl : '',
         id: user.uid);
+    print("hererere");
     Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
     final SharedPreferences prefs = await _prefs;
     print("here3");

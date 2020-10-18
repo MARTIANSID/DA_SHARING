@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:videoPlayer/screens/authenticate/AuthService.dart';
+import 'package:videoPlayer/screens/authenticate/sign_in.dart';
 import 'package:videoPlayer/screens/authenticate/user.dart';
+import 'package:videoPlayer/screens/wrapper.dart';
 import '../constants/themes.dart';
 import 'dart:math';
 
@@ -28,28 +31,34 @@ class _ProfileState extends State<Profile> {
             painter: NiceBackground(),
           ),
         ),
-        Positioned(
-          top: size.height * 0.18,
-          right: 50,
-          child: Container(
-              decoration: BoxDecoration(shape: BoxShape.circle),
-              child:
-                  Provider.of<UserManage>(context, listen: false).user.image !=
-                          ''
-                      ? Image.network(
-                          Provider.of<UserManage>(context, listen: false)
-                              .user
-                              .image,
-                          height: 200,
-                          width: 200,
-                          fit: BoxFit.contain,
-                        )
-                      : Image.asset(
-                          'assets/images/omkar.png',
-                          height: 200,
-                          width: 200,
-                          fit: BoxFit.contain,
-                        )),
+        GestureDetector(
+          onTap: () async {
+            await Provider.of<AuthService>(context, listen: false)
+                .logoutCurrentUser();
+            Navigator.pushReplacementNamed(context, '/sign');
+          },
+          child: Positioned(
+            top: size.height * 0.18,
+            right: 50,
+            child: Container(
+                height: 200,
+                width: 200,
+                decoration: BoxDecoration(shape: BoxShape.circle),
+                child: Provider.of<UserManage>(context, listen: false)
+                            .user
+                            .image !=
+                        ''
+                    ? Image.network(
+                        Provider.of<UserManage>(context, listen: false)
+                            .user
+                            .image,
+                        fit: BoxFit.contain,
+                      )
+                    : Image.asset(
+                        'assets/images/omkar.png',
+                        fit: BoxFit.contain,
+                      )),
+          ),
         ),
         Positioned(
           top: size.height * 0.105,

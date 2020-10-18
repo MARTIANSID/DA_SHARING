@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 // import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:videoPlayer/screens/authenticate/AuthenticatedUser.dart';
 /*
 USER_REQUIRED?? and 1 second of null screen
@@ -214,6 +215,13 @@ class AuthService with ChangeNotifier {
       print("Signed out user Successfully");
       currentUser = null;
       // currentUsername = null;
+      Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+      final SharedPreferences prefs = await _prefs;
+      prefs.remove("google");
+      prefs.containsKey("email") ? prefs.remove("email") : () {};
+      prefs.containsKey("password") ? prefs.remove("password") : () {};
+      prefs.containsKey("useername") ? prefs.remove("username") : () {};
+
       return true;
     } catch (e) {
       print(e.toString());

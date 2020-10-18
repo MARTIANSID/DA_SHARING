@@ -3,6 +3,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:videoPlayer/screens/authenticate/AuthService.dart';
+import 'package:videoPlayer/screens/authenticate/sign_in.dart';
 import 'package:videoPlayer/screens/authenticate/user.dart';
 import 'package:videoPlayer/screens/home.dart';
 import 'package:videoPlayer/screens/loading.dart';
@@ -11,6 +12,14 @@ import 'package:videoPlayer/screens/wrapper.dart';
 
 void main() {
   runApp(MyApp());
+}
+
+class Uss {
+  var uid;
+  var displayName;
+  var photoUrl;
+  var email;
+  Uss({this.uid, this.displayName, this.photoUrl, this.email});
 }
 
 class MyApp extends StatelessWidget {
@@ -25,12 +34,28 @@ class MyApp extends StatelessWidget {
       print("heere");
       if (prefs.containsKey('google')) {
         if (prefs.getBool('google')) {
-          GoogleSignInAccount acc = await googleSignIn.signInSilently();
+          GoogleSignInAccount acc;
+          try {
+            acc = await googleSignIn.signInSilently();
+          } catch (err) {
+            return false;
+          }
+          print("hii");
+
+          var userr = Uss(
+              uid: acc.id,
+              displayName: acc.displayName,
+              photoUrl: acc.photoUrl,
+              email: acc.email);
+          print(userr.displayName);
+          print(userr.photoUrl);
+
           await auth.getUser(
-            user: acc,
+            user: userr,
             google: true,
           );
-          return false;
+          print("here");
+          return true;
         } else {
           print("here2");
           String email = prefs.getString("email");
@@ -60,6 +85,12 @@ class MyApp extends StatelessWidget {
         ],
         child: Consumer<UserManage>(
           builder: (ctx, auth, child) => MaterialApp(
+              routes: {
+                '/sign': (
+                  BuildContext,
+                ) =>
+                    RegisterUserPage()
+              },
               debugShowCheckedModeBanner: false,
               title: 'Flutter Demo',
               theme: ThemeData(
