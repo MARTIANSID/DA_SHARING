@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:videoPlayer/constants/themes.dart';
+import 'package:videoPlayer/screens/authenticate/AuthService.dart';
 import 'package:videoPlayer/screens/authenticate/user.dart';
 
 class Profile extends StatefulWidget {
@@ -56,39 +57,48 @@ class _ProfileState extends State<Profile> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 9),
-                    child: Container(
-                      height: size.height * (134 / height),
-                      width: size.width * (135 / width),
-                      child: Provider.of<UserManage>(context, listen: false)
-                                  .user
-                                  .image !=
-                              ''
-                          ? ClipRRect(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(100)),
-                              child: Image.network(
-                                Provider.of<UserManage>(context, listen: false)
+                    child: GestureDetector(
+                      onTap: () async {
+                        await Provider.of<AuthService>(context, listen: false)
+                            .logoutCurrentUser();
+                        Navigator.pushReplacementNamed(context, '/sign');
+                      },
+                      child: Container(
+                        height: size.height * (134 / height),
+                        width: size.width * (135 / width),
+                        child: Provider.of<UserManage>(context, listen: false)
                                     .user
-                                    .image,
-                                fit: BoxFit.contain,
+                                    .image !=
+                                ''
+                            ? ClipRRect(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(100)),
+                                child: Image.network(
+                                  Provider.of<UserManage>(context,
+                                          listen: false)
+                                      .user
+                                      .image,
+                                  fit: BoxFit.contain,
+                                ),
+                              )
+                            : ClipRRect(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(100)),
+                                child: Image.asset(
+                                  'assets/images/omkar.png',
+                                  fit: BoxFit.contain,
+                                ),
                               ),
-                            )
-                          : ClipRRect(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(100)),
-                              child: Image.asset(
-                                'assets/images/omkar.png',
-                                fit: BoxFit.contain,
-                              ),
-                            ),
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle, color: Colors.white),
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle, color: Colors.white),
+                      ),
                     ),
                   ),
                   Container(
                     height: size.height * (134 / height),
                     width: size.width * 0.94 - size.width * (135 / width),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
