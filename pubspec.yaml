@@ -22,9 +22,10 @@ environment:
 
 dependencies:
   flutter:
-    sdk: flutter
+    sdk: flutter2
   firebase_auth: ^0.14.0+5
   cloud_firestore: ^0.12.9+4
+  google_sign_in: ^4.5.5
 
 
 
