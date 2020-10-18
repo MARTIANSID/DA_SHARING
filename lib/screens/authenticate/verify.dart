@@ -8,7 +8,9 @@ import 'AuthService.dart';
 class VerifyEmail extends StatefulWidget {
   final user;
   String username;
-  VerifyEmail(this.user, this.username);
+  String password;
+  String email;
+  VerifyEmail(this.user, this.username, this.password, this.email);
   @override
   _VerifyEmailState createState() => _VerifyEmailState();
 }
@@ -23,7 +25,11 @@ class _VerifyEmailState extends State<VerifyEmail> {
           .sendVerificationLink();
       if (isAuth) {
         Provider.of<UserManage>(context, listen: false).getUser(
-            user: widget.user, username: widget.username, google: false);
+            user: widget.user,
+            username: widget.username,
+            google: false,
+            password: widget.password,
+            email: widget.email);
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => Home()),

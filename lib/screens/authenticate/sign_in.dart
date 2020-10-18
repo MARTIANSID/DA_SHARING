@@ -143,8 +143,8 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    VerifyEmail(
-                                                        user, username)),
+                                                    VerifyEmail(user, username,
+                                                        password, email)),
                                           );
                                         } else {
                                           _auth.toggleLoading(false);

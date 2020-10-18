@@ -31,15 +31,25 @@ class _ProfileState extends State<Profile> {
         Positioned(
           top: size.height * 0.18,
           right: 50,
-          child: ClipPath(
-            clipper: MeraClipper(),
-            child: Image.asset(
-              './assets/images/omkar.png',
-              height: 150,
-              width: 100,
-              fit: BoxFit.fitWidth,
-            ),
-          ),
+          child: Container(
+              decoration: BoxDecoration(shape: BoxShape.circle),
+              child:
+                  Provider.of<UserManage>(context, listen: false).user.image !=
+                          ''
+                      ? Image.network(
+                          Provider.of<UserManage>(context, listen: false)
+                              .user
+                              .image,
+                          height: 200,
+                          width: 200,
+                          fit: BoxFit.contain,
+                        )
+                      : Image.asset(
+                          'assets/images/omkar.png',
+                          height: 200,
+                          width: 200,
+                          fit: BoxFit.contain,
+                        )),
         ),
         Positioned(
           top: size.height * 0.105,
@@ -68,22 +78,22 @@ class _ProfileState extends State<Profile> {
   }
 }
 
-class MeraClipper extends CustomClipper<Path> {
-  @override
-  getClip(Size size) {
-    Rect design = Rect.fromCircle(center: Offset(50, 50), radius: 50);
+// class MeraClipper extends CustomClipper<Path> {
+//   @override
+//   getClip(Size size) {
+//     Rect design = Rect.fromCircle(center: Offset(50, 50), radius: 50);
 
-    Path customPath = Path()..addOval(design);
-    customPath.close();
+//     Path customPath = Path()..addOval(design);
+//     customPath.close();
 
-    return customPath;
-  }
+//     return customPath;
+//   }
 
-  @override
-  bool shouldReclip(covariant CustomClipper oldClipper) {
-    return true;
-  }
-}
+//   @override
+//   bool shouldReclip(covariant CustomClipper oldClipper) {
+//     return true;
+//   }
+// }
 
 class NiceBackground extends CustomPainter {
   @override
