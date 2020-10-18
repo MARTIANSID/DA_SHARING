@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:videoPlayer/screens/authenticate/AuthService.dart';
 import 'package:videoPlayer/screens/authenticate/user.dart';
 import 'package:videoPlayer/screens/home.dart';
+import 'package:videoPlayer/screens/loading.dart';
 // import 'package:videoPlayer/screens/profile.dart';
 import 'package:videoPlayer/screens/wrapper.dart';
 
@@ -68,7 +69,7 @@ class MyApp extends StatelessWidget {
               home: FutureBuilder(
                   builder: (context, snapshot) {
                     if (!snapshot.hasData) {
-                      return Text('wait');
+                      return Loading();
                     } else {
                       if (snapshot.data) {
                         return Home();
