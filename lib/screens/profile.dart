@@ -20,7 +20,7 @@ class _ProfileState extends State<Profile> {
           ),
         ),
         Positioned(
-          height: size.height * 0.35,
+          height: size.height * 0.40,
           child: CustomPaint(
             size: size,
             painter: NiceBackground(),
@@ -33,9 +33,31 @@ class _ProfileState extends State<Profile> {
             clipper: MeraClipper(),
             child: Image.asset(
               './assets/images/omkar.png',
-              height: 100,
+              height: 150,
               width: 100,
               fit: BoxFit.fitWidth,
+            ),
+          ),
+        ),
+        Positioned(
+          top: size.height * 0.105,
+          left: size.width * 0.049,
+          child: Text(
+            'Omkar Kulkarni',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 35,
+            ),
+          ),
+        ),
+        Positioned(
+          top: size.height * 0.70,
+          height: size.height * 0.35,
+          child: Transform.rotate(
+            angle: pi,
+            child: CustomPaint(
+              size: size,
+              painter: NiceBackground(),
             ),
           ),
         ),
