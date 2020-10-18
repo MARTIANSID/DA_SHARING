@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 // import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:videoPlayer/constants/themes.dart';
 
 class Upload extends StatefulWidget {
   @override
@@ -12,6 +13,7 @@ class Upload extends StatefulWidget {
 class _UploadState extends State<Upload> {
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     Future<void> selectFile() async {
       FilePickerResult result = await FilePicker.platform.pickFiles(
         allowCompression: true,
@@ -24,13 +26,21 @@ class _UploadState extends State<Upload> {
       }
     }
 
-    return Container(
-      child: Center(
-          child: GestureDetector(
-              onTap: () async {
-                await selectFile();
-              },
-              child: Text("Upload"))),
+    return Scaffold(
+      body: Container(
+        width: size.width,
+        height: size.height,
+        decoration: BoxDecoration(color: ThemeConstants.BGCOLOR_DARK),
+        child: Container(),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Center(
+          child: Icon(Icons.add),
+        ),
+        onPressed: () {
+          selectFile();
+        },
+      ),
     );
   }
 }
