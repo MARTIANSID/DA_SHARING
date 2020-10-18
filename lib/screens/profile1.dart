@@ -16,6 +16,29 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final ratio = size.width / width;
+    Widget rmContainers({width, heightt}) {
+      return Container(
+        height: size.height * (heightt / height),
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: 6,
+          itemBuilder: (context, i) {
+            return Padding(
+              padding: EdgeInsets.only(left: 10, right: 10),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.red,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                height: heightt,
+                width: width,
+              ),
+            );
+          },
+        ),
+      );
+    }
+
     return Scaffold(
       body: Container(
         height: size.height,
@@ -110,7 +133,23 @@ class _ProfileState extends State<Profile> {
                   )
                 ],
               ),
-            )
+            ),
+            SizedBox(
+              height: size.height * (200 / height),
+            ),
+            Container(
+              height: size.height * (50 / height),
+              child: Text(
+                "Uploads",
+                style: TextStyle(
+                    fontFamily: "PS",
+                    fontSize: 20 * ratio,
+                    color: Colors.white),
+              ),
+            ),
+            rmContainers(
+                width: size.width * (137 / width),
+                heightt: size.height * (127 / height))
           ],
         ),
       ),
