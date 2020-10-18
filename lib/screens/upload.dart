@@ -13,8 +13,11 @@ class _UploadState extends State<Upload> {
   @override
   Widget build(BuildContext context) {
     Future<void> selectFile() async {
-      FilePickerResult result = await FilePicker.platform
-          .pickFiles(allowCompression: true, allowedExtensions: ['doc', 'pdf']);
+      FilePickerResult result = await FilePicker.platform.pickFiles(
+        allowCompression: true,
+        allowedExtensions: ['doc', 'pdf'],
+        type: FileType.custom,
+      );
 
       if (result != null) {
         File file = File(result.files.single.path);
