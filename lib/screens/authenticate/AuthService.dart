@@ -1,9 +1,9 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get_storage/get_storage.dart';
+// import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
+import 'package:videoPlayer/screens/authenticate/AuthenticatedUser.dart';
 /*
 USER_REQUIRED?? and 1 second of null screen
 */
@@ -213,7 +213,7 @@ class AuthService with ChangeNotifier {
       await _auth.signOut();
       print("Signed out user Successfully");
       currentUser = null;
-      currentUsername = null;
+      // currentUsername = null;
       return true;
     } catch (e) {
       print(e.toString());
