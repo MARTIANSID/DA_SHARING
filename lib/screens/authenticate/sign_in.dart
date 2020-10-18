@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:videoPlayer/constants/themes.dart';
 import 'package:videoPlayer/screens/authenticate/AuthService.dart';
+import 'package:videoPlayer/screens/authenticate/user.dart';
 import 'package:videoPlayer/screens/authenticate/verify.dart';
 
 import '../home.dart';
@@ -20,6 +21,7 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
   final _formkey = GlobalKey<FormState>();
   String email = "";
   String password = "";
+  String username = "";
   bool loading = false;
 
   @override
@@ -55,6 +57,26 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: TextFormField(
+                                        decoration: InputDecoration(
+                                            hintText: "username"),
+                                        onChanged: (val) {
+                                          setState(() {
+                                            this.username = val;
+                                          });
+                                        },
+                                        validator: (val) {
+                                          return (val.isEmpty)
+                                              ? "Please provide a username"
+                                              : null;
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                  Card(
+                                    color: ThemeConstants.BGCOLOR_DARK_COMP,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: TextFormField(
                                         decoration:
                                             InputDecoration(hintText: "email"),
                                         onChanged: (val) {
@@ -72,7 +94,7 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(height: 20),
+                                  // SizedBox(height: 20),
                                   Card(
                                     color: ThemeConstants.BGCOLOR_DARK_COMP,
                                     child: Padding(
@@ -121,7 +143,8 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    VerifyEmail(user)),
+                                                    VerifyEmail(
+                                                        user, username)),
                                           );
                                         } else {
                                           _auth.toggleLoading(false);
@@ -155,9 +178,12 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
                                               email, password);
                                           if (user != null && !(user is int)) {
                                             // print("" + user.toString());
-                                            // Provider.of<UserManage>(context,
-                                            //         listen: false)
-                                            //     .getUser(user: user);
+                                            Provider.of<UserManage>(context,
+                                                    listen: false)
+                                                .getUser(
+                                                    user: user,
+                                                    username: username,
+                                                    google: false);
                                             Navigator.pushReplacement(
                                                 context,
                                                 MaterialPageRoute(
@@ -202,9 +228,9 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
                                   print("Signed In With");
 
                                   print(result.displayName);
-                                  // Provider.of<UserManage>(context,
-                                  //         listen: false)
-                                  //     .getUser(user: result);
+                                  Provider.of<UserManage>(context,
+                                          listen: false)
+                                      .getUser(user: result, google: true);
                                   Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(

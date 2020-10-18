@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:videoPlayer/screens/authenticate/user.dart';
 import '../constants/themes.dart';
 import 'dart:math';
 
@@ -43,7 +45,7 @@ class _ProfileState extends State<Profile> {
           top: size.height * 0.105,
           left: size.width * 0.049,
           child: Text(
-            'Omkar Kulkarni',
+            Provider.of<UserManage>(context, listen: false).user.name,
             style: TextStyle(
               color: Colors.white,
               fontSize: 35,

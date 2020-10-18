@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:videoPlayer/screens/authenticate/AuthService.dart';
+import 'package:videoPlayer/screens/authenticate/user.dart';
 import 'package:videoPlayer/screens/home.dart';
 import 'package:videoPlayer/screens/profile.dart';
 import 'package:videoPlayer/screens/wrapper.dart';
@@ -14,7 +15,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [ChangeNotifierProvider.value(value: AuthService())],
+      providers: [
+        ChangeNotifierProvider.value(value: AuthService()),
+        ChangeNotifierProvider.value(value: UserManage())
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:videoPlayer/screens/authenticate/user.dart';
 
 import '../home.dart';
 import 'AuthService.dart';
 
 class VerifyEmail extends StatefulWidget {
   final user;
-  VerifyEmail(this.user);
+  String username;
+  VerifyEmail(this.user, this.username);
   @override
   _VerifyEmailState createState() => _VerifyEmailState();
 }
@@ -20,7 +22,8 @@ class _VerifyEmailState extends State<VerifyEmail> {
       bool isAuth = await Provider.of<AuthService>(context, listen: false)
           .sendVerificationLink();
       if (isAuth) {
-        // Provider.of<UserManage>(context, listen: false).getUser(user: user);
+        Provider.of<UserManage>(context, listen: false).getUser(
+            user: widget.user, username: widget.username, google: false);
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => Home()),
