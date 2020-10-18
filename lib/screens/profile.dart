@@ -35,7 +35,7 @@ class _ProfileState extends State<Profile> {
               './assets/images/omkar.png',
               height: 100,
               width: 100,
-              fit: BoxFit.fill,
+              fit: BoxFit.fitWidth,
             ),
           ),
         ),
@@ -47,7 +47,7 @@ class _ProfileState extends State<Profile> {
 class MeraClipper extends CustomClipper<Path> {
   @override
   getClip(Size size) {
-    Rect design = Rect.fromCircle(center: Offset(50, 50), radius: 40);
+    Rect design = Rect.fromCircle(center: Offset(50, 50), radius: 50);
 
     Path customPath = Path()..addOval(design);
     customPath.close();
