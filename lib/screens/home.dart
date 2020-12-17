@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_vlc_player/flutter_vlc_player.dart';
 import 'package:videoPlayer/screens/chatRoom.dart';
 import 'package:videoPlayer/screens/profile1.dart';
 import 'package:videoPlayer/screens/upload.dart';
@@ -13,7 +14,7 @@ class _HomeState extends State<Home> {
   int currentIndex = 0;
   final widgetOptions = [
     Profile(),
-    Upload(),
+    VLCPlayerr(),
     ChatRoom(),
   ];
   @override
