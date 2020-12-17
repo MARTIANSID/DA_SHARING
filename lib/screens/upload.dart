@@ -12,7 +12,8 @@ class VLCPlayerr extends StatefulWidget {
 class _VLCPlayerState extends State<VLCPlayerr> {
   String testUrl =
       'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4';
-  String localUrl = '/data/user/0/com.example.videoPlayer/cache/file_picker/VID-20201027-WA0061.mp4';
+  String localUrl =
+      '/data/user/0/com.example.videoPlayer/cache/file_picker/VID-20201113-WA0011.mp4';
 
   VlcPlayerController controller;
 
@@ -20,6 +21,7 @@ class _VLCPlayerState extends State<VLCPlayerr> {
   final int width = 360;
   bool visibile = true;
   double position = 0.0;
+  bool isLoading = false;
 
   @override
   void initState() {
@@ -32,17 +34,36 @@ class _VLCPlayerState extends State<VLCPlayerr> {
         print('sex : $position');
       });
     });
+
     super.initState();
   }
 
   Future<void> filePick() async {
-    FilePickerResult result = await FilePicker.platform.pickFiles(
-      type: FileType.any,
-    );
     setState(() {
-      testUrl = result.files.single.path;
-      print(result.files.single.path);
-      print('fired');
+      isLoading = true;
+    });
+
+    FilePickerResult result = await FilePicker.platform.pickFiles(
+        // type: FileType.media,
+        // allowMultiple: false,
+        // allowedExtensions: ['.mp4'],
+        withData: false,
+        allowCompression: true,
+        
+        onFileLoading: (status) {
+          print('status : $status');
+        });
+    setState(() {
+      isLoading = false;
+    });
+    setState(() {
+      testUrl = result.files.single.path.toString();
+      controller.setStreamUrl(
+        testUrl,
+        isLocalMedia: true,
+      );
+      print('path: ${result.files.single.path}');
+      print('fired : $testUrl');
     });
   }
 
@@ -53,33 +74,50 @@ class _VLCPlayerState extends State<VLCPlayerr> {
         child: Center(
           child: Column(
             children: [
-              Stack(children: [
-                SizedBox(
-                  height: height.toDouble(),
-                  width: height.toDouble(),
-                  child: VlcPlayer(
-                    isLocalMedia: true,
-                    controller: controller,
-                    aspectRatio: 16 / 9,
-                    url: localUrl,
-                    placeholder: Center(),
+              Stack(
+                children: [
+                  SizedBox(
+                    height: height.toDouble(),
+                    width: height.toDouble(),
+                    child: VlcPlayer(
+                      isLocalMedia: true,
+                      controller: controller,
+                      aspectRatio: 16 / 9,
+                      url: testUrl,
+                      placeholder: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    ),
                   ),
-                ),
-                Positioned(
-                    left: 220,
-                    top: 500,
-                    child: AnimatedOpacity(
-                      duration: Duration(seconds: 2),
-                      opacity: visibile ? 1.0 : 0.0,
-                      child: IconButton(
-                          icon: Icon(
-                            Icons.place,
-                            size: 40,
-                            color: Colors.red,
-                          ),
-                          onPressed: () {}),
-                    ))
-              ]),
+                  Positioned(
+                      left: 220,
+                      top: 500,
+                      child: AnimatedOpacity(
+                        duration: Duration(seconds: 1),
+                        opacity: visibile ? 1.0 : 0.0,
+                        child: IconButton(
+                            icon: Icon(
+                              Icons.place,
+                              size: 40,
+                              color: Colors.red,
+                            ),
+                            onPressed: () {}),
+                      )),
+                  Container(
+                    margin: EdgeInsets.only(top: 100),
+                    child: Slider(
+                      onChanged: (value) {
+                        setState(() {
+                          position = value;
+                        });
+                      },
+                      value: 10,
+                      min: 0.0,
+                      max: 30,
+                    ),
+                  ),
+                ],
+              ),
               RaisedButton(
                 onPressed: () {
                   setState(() {
@@ -109,12 +147,14 @@ class _VLCPlayerState extends State<VLCPlayerr> {
                 min: 0.0,
                 max: 30,
               ),
-              RaisedButton(
-                onPressed: () {
-                  filePick();
-                },
-                child: Text('Movie'),
-              )
+              isLoading
+                  ? CircularProgressIndicator()
+                  : RaisedButton(
+                      onPressed: () {
+                        filePick();
+                      },
+                      child: Text('Movie'),
+                    )
             ],
           ),
         ),
