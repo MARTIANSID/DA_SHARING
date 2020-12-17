@@ -12,7 +12,7 @@ class VLCPlayerr extends StatefulWidget {
 class _VLCPlayerState extends State<VLCPlayerr> {
   String testUrl =
       'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4';
-  String localUrl = '';
+  String localUrl = '/data/user/0/com.example.videoPlayer/cache/file_picker/VID-20201027-WA0061.mp4';
 
   VlcPlayerController controller;
 
@@ -41,6 +41,8 @@ class _VLCPlayerState extends State<VLCPlayerr> {
     );
     setState(() {
       testUrl = result.files.single.path;
+      print(result.files.single.path);
+      print('fired');
     });
   }
 
@@ -56,9 +58,10 @@ class _VLCPlayerState extends State<VLCPlayerr> {
                   height: height.toDouble(),
                   width: height.toDouble(),
                   child: VlcPlayer(
+                    isLocalMedia: true,
                     controller: controller,
                     aspectRatio: 16 / 9,
-                    url: testUrl,
+                    url: localUrl,
                     placeholder: Center(),
                   ),
                 ),
