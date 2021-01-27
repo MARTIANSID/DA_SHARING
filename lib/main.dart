@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:videoPlayer/providers/position.dart';
 import 'package:videoPlayer/screens/authenticate/AuthService.dart';
 import 'package:videoPlayer/screens/authenticate/sign_in.dart';
 import 'package:videoPlayer/screens/authenticate/user.dart';
@@ -79,37 +80,43 @@ class MyApp extends StatelessWidget {
     }
 
     return MultiProvider(
-        providers: [
-          ChangeNotifierProvider.value(value: AuthService()),
-          ChangeNotifierProvider.value(value: UserManage())
-        ],
-        child: Consumer<UserManage>(
-          builder: (ctx, auth, child) => MaterialApp(
-              routes: {
-                '/sign': (
-                  BuildContext,
-                ) =>
-                    RegisterUserPage()
-              },
-              debugShowCheckedModeBanner: false,
-              title: 'Flutter Demo',
-              theme: ThemeData(
-                primarySwatch: Colors.blue,
-                visualDensity: VisualDensity.adaptivePlatformDensity,
-              ),
-              home: FutureBuilder(
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return Loading();
-                    } else {
-                      if (snapshot.data) {
-                        return Home();
-                      } else {
-                        return Wrapper();
-                      }
-                    }
-                  },
-                  future: checkIfdc(auth))),
-        ));
+      providers: [
+        ChangeNotifierProvider.value(value: AuthService()),
+        ChangeNotifierProvider.value(value: UserManage()),
+        ChangeNotifierProvider.value(
+          value: Pos(),
+        )
+      ],
+      child: Consumer<UserManage>(
+        builder: (ctx, auth, child) => MaterialApp(
+          routes: {
+            '/sign': (
+              BuildContext,
+            ) =>
+                RegisterUserPage()
+          },
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+          ),
+          home: FutureBuilder(
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) {
+                return Loading();
+              } else {
+                if (snapshot.data) {
+                  return Home();
+                } else {
+                  return Wrapper();
+                }
+              }
+            },
+            future: checkIfdc(auth),
+          ),
+        ),
+      ),
+    );
   }
 }
