@@ -70,41 +70,41 @@ class _VLCPlayerState extends State<VLCPlayerr> {
       isLoading = true;
     });
 
-    // FilePickerResult result = await FilePicker.platform.pickFiles(
-    //     // type: FileType.media,
-    //     // allowMultiple: false,
-    //     // allowedExtensions: ['.mp4'],
-    //     withData: false,
-    //     // allowCompression: true,
-    //     withReadStream: true,
-    //     onFileLoading: (status) {
-    //       if (status.toString() == "FilePickerStatus.picking") {
-    //         setState(() {
-    //           picking = true;
-    //         });
-    //       } else {
-    //         setState(() {
-    //           picking = false;
-    //         });
-    //       }
-    //     });
-    // testUrl = await FilePicker.platform.getDirectoryPath();
+    FilePickerResult result = await FilePicker.platform.pickFiles(
+        // type: FileType.media,
+        // allowMultiple: false,
+        // allowedExtensions: ['.mp4'],
+        withData: false,
+        // allowCompression: true,
+        withReadStream: true,
+        onFileLoading: (status) {
+          if (status.toString() == "FilePickerStatus.picking") {
+            setState(() {
+              picking = true;
+            });
+          } else {
+            setState(() {
+              picking = false;
+            });
+          }
+        });
+    testUrl = await FilePicker.platform.getDirectoryPath();
 
-    // // print('testUrl: $testUrl');
-    // setState(() {
-    //   isLoading = false;
-    // });
-    // setState(
-    //   () {
-    //     testUrl = result.files.single.path.toString();
-    //     controller.setStreamUrl(
-    //       testUrl,
-    //       isLocalMedia: true,
-    //     );
-    //     // print('path: ${result.files.single.path}');
-    //     print('fired : $testUrl');
-    //   },
-    // );
+    // print('testUrl: $testUrl');
+    setState(() {
+      isLoading = false;
+    });
+    setState(
+      () {
+        testUrl = result.files.single.path.toString();
+        controller.setStreamUrl(
+          testUrl,
+          isLocalMedia: true,
+        );
+        // print('path: ${result.files.single.path}');
+        print('fired : $testUrl');
+      },
+    );
   }
 
   @override
